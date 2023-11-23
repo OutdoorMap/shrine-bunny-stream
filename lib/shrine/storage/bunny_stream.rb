@@ -12,9 +12,9 @@ class Shrine
       end
 
       def upload(io, id, shrine_metadata: {}, **upload_options)
-        video_id = BunnyStream::Storage.create_video({title: shrine_metadata["filename"]})
+        video_id = ::BunnyStream::Storage.create_video({title: shrine_metadata["filename"]})
 
-        BunnyStream::Storage.upload_video(video_id, io)
+        ::BunnyStream::Storage.upload_video(video_id, io)
 
         id.replace(video_id)
       end
@@ -24,13 +24,13 @@ class Shrine
       end
 
       def exists?(id)
-        val = BunnyStream::Storage.get_video(id)
+        val = ::BunnyStream::Storage.get_video(id)
 
         val.is_a?(Hash) && val['gid'].present?
       end
 
       def delete(id)
-        BunnyStream::Storage.delete_video(id)
+        ::BunnyStream::Storage.delete_video(id)
       end
 
       def url(id, size: nil, **options)
