@@ -1,5 +1,5 @@
 require "shrine"
-require "bunny-stream"
+require "bunny_stream"
 require "down/http"
 
 class Shrine
